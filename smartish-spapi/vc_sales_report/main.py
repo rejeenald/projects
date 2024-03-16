@@ -37,12 +37,12 @@ def createLogPath(folder_name):
         os.makedirs(log_path_dir)
     
     date_now = dt.datetime.now().date()
-    filename = "_".join(['smartish-spapi', str(date_now)])
+    filename = "_".join([folder_name, str(date_now)])
     filename = ".".join([filename, 'log'])
     log_path = "\\".join([log_path_dir, filename])
     return log_path
 
-log_path = createLogPath('smartish-spapi') 
+log_path = createLogPath('spapi') 
 logging.basicConfig(format='%(asctime)s:[%(levelname)s]:[%(filename)s][\"%(funcName)s()\"][line %(lineno)d]: %(message)s', filename=log_path, level=logging.DEBUG, datefmt="%Y-%m-%d %H:%M:%S", force=True)
 
 def report_status(script_name:str, status:str):
@@ -51,8 +51,8 @@ def report_status(script_name:str, status:str):
 
 if __name__ == "__main__":
     logging.info("\n")
-    logging.info("\"===========================SMARTISH-SPAPI===========================\"")
-    logging.info(f"['smartish-spapi']: log filename: {log_path}")
+    logging.info("\"===========================SPAPI===========================\"")
+    logging.info(f"log filename: {log_path}")
     logging.info(f"Saving log to {log_path}")
     print(f"Saving log to {log_path}")
     vc_spapi = Reports()
