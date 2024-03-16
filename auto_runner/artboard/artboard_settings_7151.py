@@ -1,0 +1,104 @@
+import sys
+sys.path.append("..")
+from settings import SYNCPLICITY_ROOT, CSV_DIR, OLD_JOB_DIR, PRODUCTION_EPS, RESULTS_PATH
+
+#MAKE SURE POSITION ANCHOR POINT IS SET TO CENTER WHEN COPYING POINT POSITIONS
+# HARDCODE IN JIG POSITIONS
+# Hard code in x,y positions of jig positions in pixels
+
+#Point 1
+p0X = 1760.75
+p0Y = 1295.75
+
+#Point 2
+p1X = 1256.75
+p1Y = 1295.75
+
+#Point 3
+p2X = 752.75 
+p2Y = 1295.75
+
+#Point 4
+p3X = 248.75
+p3Y = 1295.75
+
+#Point 5
+p4X = 1760.75
+p4Y = 1007.5
+
+#Point 6
+p5X = 1256.75
+p5Y = 1007.5
+
+#Point 7
+p6X = 752.75
+p6Y = 1007.5
+
+#Point 8
+p7X = 248.75
+p7Y = 1007.5
+
+#Point 9
+p8X = 1760.75
+p8Y = 719.75
+
+#Point 10
+p9X = 1256.75
+p9Y = 719.75 
+
+#Point 11
+p10X = 752.75
+p10Y = 719.75
+
+#Point 12
+p11X = 248.75
+p11Y = 719.75
+
+#Point 13
+p12X = 1760.75
+p12Y = 431.75
+
+#Point 14
+p13X = 1256.75 
+p13Y = 431.75
+
+#Point 15
+p14X = 752.75
+p14Y = 431.75
+
+#Point 16
+p15X = 248.75
+p15Y = 431.75
+
+#Point 17
+p16X = 1760.75
+p16Y = 143.75
+
+#Point 18
+p17X = 1256.75
+p17Y = 143.75
+
+#Point 19
+p18X = 752.75
+p18Y = 143.75
+
+#Point 20
+p19X = 248.75
+p19Y = 143.75
+
+
+# MOVE_BY = -2
+JIGPOSITIONS_X_7151 = [p0X, p1X, p2X, p3X, p4X, p5X, p6X, p7X, p8X, p9X, p10X, p11X, p12X, p13X, p14X, p15X, p16X, p17X, p18X, p19X]
+# JIGPOSITIONS_X_7151 = [x+MOVE_BY for x in JIGPOSITIONS_X_7151]
+JIGPOSITIONS_Y_7151 = [p0Y, p1Y, p2Y, p3Y, p4Y, p5Y, p6Y, p7Y, p8Y, p9Y, p10Y, p11Y, p12Y, p13Y, p14Y, p15Y, p16Y, p17Y, p18Y, p19Y]
+UP_JIG_7151 = SYNCPLICITY_ROOT + r"\Production\_Custom Jig\7151-current-jig-ab.ai"
+CSV_DIR = CSV_DIR
+OLD_JOB_DIR = OLD_JOB_DIR
+
+if PRODUCTION_EPS:
+    DESTINATION_FOLDER_7151 = SYNCPLICITY_ROOT + r"\Production\7151 Jobs"
+else:
+    DESTINATION_FOLDER_7151 = RESULTS_PATH + r"\Production\7151 Jobs"
+
+print(f"JIGPOSITIONS_X_7151: {JIGPOSITIONS_X_7151}")
+print(f"JIGPOSITIONS_Y_7151: {JIGPOSITIONS_Y_7151}")

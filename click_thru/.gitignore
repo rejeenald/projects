@@ -1,0 +1,7 @@
+__pycache__
+__logs_and_csvs
+*.pyc
+*.csv
+*.log
+build
+dist
