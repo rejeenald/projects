@@ -9,7 +9,7 @@ SYNCPLICITY = os.getenv("SYNCPLICITY_HOME")
 RESULTS_PATH = SYNCPLICITY + "------------------------"
 
 if PRODUCTION:
-    FILE = RESULTS_PATH + "Custom Updater_v4.xlsm"
+    FILE = RESULTS_PATH + "------------------------.xlsm"
     EXPENSE_FILE = SYNCPLICITY + r"------------------------.csv"
 else:
     FILE = RESULTS_PATH + "------------------------.xlsm"
