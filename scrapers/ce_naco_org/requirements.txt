@@ -1,0 +1,50 @@
+# NOTE: this is a minimal requirements.txt. Add more packages as needed (favorite/recommended packages can be found in:
+# - MJR067 - https://docs.google.com/document/d/1Sw6aMA3u0hMBPjBGbZiKlrs33a5pZG69ZHHokzn_maI/edit
+# - MJR068 - https://docs.google.com/document/d/1k6ut6ssPvVO93Pb45JIZXKPQ5jExCkkfOy8Q0fZ6LeY/edit
+
+--extra-index-url https://1zRaBh-gePq1NrYNyykmjruAnFlgfSslCk:@pypi.fury.io/wordbean-2019
+orca_skips
+cherry_apples
+scrapyium
+
+
+# for scraping
+scrapy==2.4.0
+lxml
+scrapy-crawlera
+scrapyd-client
+
+# for API / web ui
+requests    >= 2.10.0
+gunicorn    >= 19.5.0
+flask
+flask-admin
+Flask-WTF
+WTForms
+
+# for deployment
+fabric>=2
+invoke
+invocations
+patchwork
+paramiko
+
+# for testing
+scrapy_tdd
+pytest==4.0
+pytest-bdd
+pytest-cov
+pytest-describe
+pytest-twisted
+pytest-watch
+codacy-coverage
+pylint
+# pytest-flask
+
+# for python 2/3 compatibility
+futures
+future
+psutil
+
+
+
