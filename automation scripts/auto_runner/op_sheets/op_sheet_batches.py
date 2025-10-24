@@ -12,19 +12,15 @@ from time import sleep
 from win32com import client
 
 
-try:
-    from .packing_slips import LabelMaker
-    from .order_batches import OrderBatches
-    from .op_sheet_settings import *
-except:
-    from packing_slips import LabelMaker
-    from order_batches import OrderBatches
-    from op_sheet_settings import *
+
+from .packing_slips import LabelMaker
+from .order_batches import OrderBatches
+from .op_sheet_settings import *
 
 class OpSheetGenerator:
-    def __init__(self, artboard:pd.DataFrame, regular:bool) -> None:
+    def __init__(self, artboard:pd.DataFrame, regular:bool, clear_case:bool) -> None:
         logging.info("===============OpSheetGenerator===============")
-        self.batches = OrderBatches(artboard=artboard, regular=regular).batches
+        self.batches = OrderBatches(artboard=artboard, regular=regular, clear_case=clear_case).batches
         self._item_ids_by_filename = {}
 
     @property
@@ -46,7 +42,9 @@ class OpSheetGenerator:
                 logging.debug(f"batch: {self.batches[batch]}")
                 self._item_ids_by_filename[filename] = list(self.batches[batch]["Order - ItemID"].unique())
                 order_ids = list(self.batches[batch]["Order - ID"])
-                self._attach_packing_slips(filename=filename, order_ids=order_ids)        
+                
+                if ATTACH_PACKING_SLIPS:
+                    self._attach_packing_slips(filename=filename, order_ids=order_ids)        
     
     def _encode_orders_in_template(self, batch:pd.DataFrame) -> None:
         logging.info("Encoding orders to template...")

@@ -44,18 +44,14 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware' : None,
 }
 
-PROXY_USER = '9de8e524f7'
-PROXY_PASSWORD = 'hHxvXVSN'
+PROXY_USER = '************'
+PROXY_PASSWORD = '****************'
 
 # this list might have to be updated from time to time ...
 PROXY_SERVERS = [
-'196.16.200.140:4444',
-'196.17.200.18:4444',
-'162.244.151.193:4444',
-'196.18.200.122:4444',
-'196.19.200.29:4444'
+'********************'
 ]
 PROXY_LIST_STATIC = [PROXY_USER + ":" + PROXY_PASSWORD + "@" + proxy for proxy in PROXY_SERVERS]
 
 
-PROXY_LIST_STATIC = ['residential-proxies.wordbean.com:17342']
+PROXY_LIST_STATIC = ['*********************']

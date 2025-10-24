@@ -73,6 +73,6 @@ DOWNLOADER_MIDDLEWARES = {
 
 # use our non-rotating dedicated proxies
 # PROXY_TYPE = 'dedicated'
-PROXY_LIST_STATIC = [ "us-dedicated-proxies.done-data-solutions.com:%d" % port for port in range(37652, 37692) ]
+PROXY_LIST_STATIC = [ "***********************:%d" % port for port in range(37652, 37692) ]
 #PROXY_LIST_STATIC += [ "residential-proxies.done-data-solutions.com:%d" % port for port in range(17343, 17353) ]
 PROXY_DROP_FAILED = False

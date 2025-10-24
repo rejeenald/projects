@@ -3,26 +3,27 @@ import pandas as pd
 from auto_runner import AutoRunner
 from settings import *
 from custom_raw_data_updater import CustomRawDataUpdater
-try:
-    from op_sheets.op_sheet_batches import OpSheetGenerator
-except:
-    from .op_sheets.op_sheet_batches import OpSheetGenerator
-from win32com import client
+from op_sheets.op_sheet_batches import OpSheetGenerator
 
 
 class AutoRunnerExecuter:
-    def __init__(self, artboard:pd.DataFrame, regular:bool) -> None:
+    def __init__(self, artboard:pd.DataFrame, regular:bool, clear_case:bool) -> None:
         logging.info("===============AutoRunnerExecuter===============")
         self.artboard = artboard
         self.auto_runner = AutoRunner()
-        self.op_sheet_generator = OpSheetGenerator(artboard=artboard, regular=regular)
-        self.custom_raw_data_updater = CustomRawDataUpdater()
+        if not ARTBOARD_ONLY:
+            self.op_sheet_generator = OpSheetGenerator(artboard=artboard, regular=regular, clear_case=clear_case)
+            self.custom_raw_data_updater = CustomRawDataUpdater()
         
     def execute_auto_runner(self) -> list:
         logging.info("Generating CSV and initial operatpr sheet...")
-        self.op_sheet_generator.create_operator_sheets()
-        self._create_artboards()
-        self._update_custom_updater_file()
+        if ARTBOARD_ONLY:
+            logging.info(f"Artboards ONLY!!!!!")
+            self._create_artboards()
+        else:
+            self.op_sheet_generator.create_operator_sheets()
+            self._create_artboards()
+            self._update_custom_updater_file()
 
     def _create_artboards(self) -> None:
         logging.info("Creating artboard...")

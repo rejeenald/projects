@@ -22,3 +22,8 @@ class CustomUpdaterRefresher:
 
         saver.quit_excel()
         logging.info('Refreshing completed!')
+
+
+# to do: 
+# 1. create an auto_runner_without_gloss.exe
+# 2. create a pdf file containing the unprocessed orders

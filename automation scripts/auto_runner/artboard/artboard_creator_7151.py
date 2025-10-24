@@ -3,13 +3,15 @@ import os
 import pandas as pd
 
 from artboard.artboard_creator import AIArtboardCreator
-from artboard.artboard_settings_7151 import JIGPOSITIONS_X_7151, JIGPOSITIONS_Y_7151, UP_JIG_7151, DESTINATION_FOLDER_7151, CSV_DIR, OLD_JOB_DIR
+from artboard.artboard_settings_7151 import JIGPOSITIONS_X_7151, JIGPOSITIONS_Y_7151, UP_JIG_7151, DESTINATION_FOLDER_7151, CSV_DIR, OLD_JOB_DIR, MISSING_IMAGES_REPORT, BATCHES
 from artboard.illustrator import Illustrator
 
 class AIArtboardCreator_7151(AIArtboardCreator):
     def __init__(self) -> None:
         super().__init__()
         logging.info("===============AIArtboardCreator_7151===============")
+        self.missing_imgs_report_filepath = MISSING_IMAGES_REPORT
+        self.batches_filepath = BATCHES
 
     def move_csv(self, csv_filename:str) -> None:
         logging.info(f"Moving eps to {csv_filename} to {OLD_JOB_DIR}")
@@ -26,7 +28,7 @@ class AIArtboardCreator_7151(AIArtboardCreator):
         self.illz.open(UP_JIG_7151)
         logging.info(f"Jig opened: {UP_JIG_7151}")
 
-        img_list = self.process_images(images, JIGPOSITIONS_X_7151, JIGPOSITIONS_Y_7151)
+        img_list, missing_images = self.process_images(images, JIGPOSITIONS_X_7151, JIGPOSITIONS_Y_7151)
         logging.info(f"img_list: {img_list}")
 
         self.hide_center_points()
@@ -44,3 +46,6 @@ class AIArtboardCreator_7151(AIArtboardCreator):
         self.illz.docRef.SaveAs(SaveIn=eps_filename, Options=eps_options)
         self.illz.close()
         logging.info("Illustrator closed!")
+
+        self.save_missing_images_report_if_any(missing_images, eps_filename, self.missing_imgs_report_filepath, self.batches_filepath)
+        logging.info("Artboard creator is done!")

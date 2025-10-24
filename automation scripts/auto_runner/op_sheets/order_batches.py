@@ -10,12 +10,13 @@ except:
     from .op_sheet_settings import SKU_GROUPINGS, OP_SHEET_SUFFIX, LIMIT_7151, LIMIT_6042, BATCHES
 
 class OrderBatches:
-    def __init__(self, artboard:pd.DataFrame, regular:bool) -> None:
+    def __init__(self, artboard:pd.DataFrame, regular:bool, clear_case:bool) -> None:
         logging.info("===============OrderBatches===============")
         self.sku_batches = SKU_GROUPINGS.groupby(["group_number", "printer"])["family_sku"].apply(set).to_dict()
         logging.debug(f"sku batches: {self.sku_batches}")
         self.artboard = artboard
         self.regular = regular
+        self.clear_case = clear_case
         
     def _batch_orders(self) -> None:
         logging.info("Grouping orders by batch...")
@@ -81,6 +82,8 @@ class OrderBatches:
     def __set_printer(self, batch):
         if self.regular:
             printer = batch[-1]
+        elif self.clear_case:
+            printer = "6042"
         else:
             printer = "7151"
         return str(printer)
@@ -167,7 +170,8 @@ class OrderBatches:
 
 
     
-# if __name__ == "__main__":
-#     from settings import TO_PRINT_ARTBOARD
-#     csv_gentr = OrderBatches(TO_PRINT_ARTBOARD)
-#     csv_gentr.batches
+if __name__ == "__main__":
+    from settings import TO_PRINT_ARTBOARD
+    print(TO_PRINT_ARTBOARD)
+    csv_gentr = OrderBatches(TO_PRINT_ARTBOARD, regular=True)
+    print(csv_gentr.batches)
